@@ -66,4 +66,25 @@ export class MonoController{
             return res.json({message:"Ocurrio un error al eliminar"})
         }
     }
+
+    public getCasosUltimaSemana = async (req: Request, res: Response) => {
+        try {
+            // Calcular el rango de fechas
+            const now = new Date();
+            const aWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    
+            // Buscar casos en el rango de fechas
+            const casos = await monoModel.find({
+                creationDate: {
+                    $gte: aWeekAgo,
+                    $lte: now
+                }
+            });
+    
+            res.json(casos);
+        } catch (error) {
+            res.status(500).json({ message: 'Error al obtener los casos' });
+        }
+    };
+    
 }
