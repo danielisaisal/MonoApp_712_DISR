@@ -5,13 +5,12 @@ export class CaseRoutes{
     static get routes(): Router{
         const router = Router();
         const controller = new MonoController();
+        router.get("/casoSemana", controller.getCasosUltimaSemana);
         router.get("/", controller.getCasos);
         router.get("/:id", controller.getCasoById);
         router.post("/", controller.createCaso);
         router.put("/:id", controller.updateCaso);
         router.delete("/:id", controller.deleteCaso);
-
-        router.get("/week", controller.getCasosUltimaSemana);
         return router;
     }
 }

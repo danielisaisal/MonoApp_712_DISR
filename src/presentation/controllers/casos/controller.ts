@@ -69,22 +69,17 @@ export class MonoController{
 
     public getCasosUltimaSemana = async (req: Request, res: Response) => {
         try {
-            // Calcular el rango de fechas
-            const now = new Date();
-            const aWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+            // Calcular la fecha de hace 7 días
+            const unaSemanaAtras = new Date();
+            unaSemanaAtras.setDate(unaSemanaAtras.getDate() - 7); // Ajustar la fecha para 7 días atrás
     
-            // Buscar casos en el rango de fechas
-            const casos = await monoModel.find({
-                creationDate: {
-                    $gte: aWeekAgo,
-                    $lte: now
-                }
-            });
+            // Buscar casos con creationDate mayor o igual a la fecha de hace 7 días
+            const casos = await monoModel.find({ creationDate: { $gte: unaSemanaAtras } });
     
-            res.json(casos);
+            return res.json(casos);
         } catch (error) {
-            res.status(500).json({ message: 'Error al obtener los casos' });
+            return res.json({ message: "Ocurrió un error al obtener los casos de la última semana" });
         }
-    };
+    }
     
 }
