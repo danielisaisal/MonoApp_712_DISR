@@ -2,8 +2,8 @@ version: '3.8'
 # Contenedores configuración
 services:
   mono-map:
-    build: .
-    #image: daniel978/mono-map-api:latest
+    #build: . se comento por el momento no se usa
+    image: daniel978/mono-map-api:latest
     container_name: mono-map
     ports:
       - "3000:3000"

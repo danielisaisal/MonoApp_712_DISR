@@ -59,7 +59,7 @@ export function generateMonoEmailTemplate(lat: number, lng: number, genre: strin
     <body>
         <div class="container">
             <div class="header">
-                <h1>Detalles del Incidente</h1>
+                <h1>Nuevo caso de viruela detectado</h1>
             </div>
             <div class="content">
                 <p><strong>Nuevo caso de viruela detectado</strong></p>
@@ -68,6 +68,7 @@ export function generateMonoEmailTemplate(lat: number, lng: number, genre: strin
                 <p><strong>Edad:</strong> ${age}</p>
                 <p><strong>Genero:</strong> ${genre}</p>
                 <img src="${mapboxUrl}" class="map-img" />
+                <p><strong>Genero:</strong> En caso de ver un nuevo caso o sospecha de uno, comunicate con las autoridades correspondientes y toma tu distancia</p>
             </div>
             <div class="footer">
                 <p>Este es un correo generado automáticamente. Por favor, no responda a este mensaje.</p>
