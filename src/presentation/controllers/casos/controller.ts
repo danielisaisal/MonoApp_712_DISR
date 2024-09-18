@@ -14,14 +14,12 @@ export class MonoController{
 
     public createCaso = async (req: Request, res: Response)=>{
         try {
-            const {lat, lng, isSend, genre, age, creationDate} = req.body;
+            const {lat, lng, genre, age} = req.body;
             const newCaso = await monoModel.create({
                 lat,
                 lng,
-                isSend,
                 genre,
-                age,
-                creationDate
+                age
             });
             res.json(newCaso);
         } catch (error) {
@@ -42,13 +40,12 @@ export class MonoController{
     public updateCaso = async (req:Request, res: Response) =>{
         try {
             const { id } = req.params;
-            const {lat, lng, genre, age, creationDate} = req.body;
+            const {lat, lng, genre, age} = req.body;
             await monoModel.findByIdAndUpdate(id,{
                 lat,
                 lng,
                 genre,
-                age,
-                creationDate
+                age
             });
             const updatedCaso = await monoModel.findById(id);
             return res.json(updatedCaso);
